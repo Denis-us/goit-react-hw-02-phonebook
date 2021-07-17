@@ -1,25 +1,28 @@
-import logo from "./logo.svg";
-import "./App.css";
+import React, { Component } from "react";
+import Form from "./components/Form/Form";
+import Section from "./components/Section/Section";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    contacts: [],
+    filter: "",
+  };
+
+  render() {
+    const { contacts, filter } = this.state;
+
+    return (
+      <>
+        <Section title={"Phonebook"}>
+          <Form />
+        </Section>
+
+        <Section title={"Contacts"}>
+          <Form />
+        </Section>
+      </>
+    );
+  }
 }
 
 export default App;
