@@ -1,24 +1,62 @@
 import React, { Component } from "react";
 import Input from "../Input/Input";
 
+import shortid from "shortid";
+
 class Form extends Component {
-  // state = ()
+  state = {
+    contacts: [],
+    name: "",
+    number: "",
+  };
+
+  nameInputId = shortid.generate();
+  numberInputId = shortid.generate();
 
   handleChange = (event) => {
-    console.log(event);
+    const { name, value } = event.target;
+
+    this.setState({
+      [name]: value,
+    });
+    // console.log(`event.target.value`, name, '----', value)
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("this.state", this.state);
+    this.props.onSubmit(this.state);
+    this.reset();
+  };
+
+  reset = () => {
+    this.setState({ name: "", number: "" });
   };
 
   render() {
     return (
-      <form>
-        <h3>Name</h3>
+      <form onSubmit={this.handleSubmit}>
+        <label>Name</label>
         <Input
-          type="text"
-          name="name"
-          placeholder=""
+          type={"text"}
+          value={this.state.name}
+          placeholder={"enter your name"}
+          name={"name"}
           handleChange={this.handleChange}
+          id={this.nameInputId}
         />
-        <button>Add contact</button>
+
+        <label>Number</label>
+        <Input
+          type={"tel"}
+          value={this.state.number}
+          placeholder={"enter your number"}
+          name={"number"}
+          handleChange={this.handleChange}
+          id={this.numberInputId}
+        />
+
+        <button type="submit">Add contact</button>
       </form>
     );
   }
