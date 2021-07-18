@@ -16,10 +16,10 @@ class App extends Component {
     const { contacts } = this.state;
     const { name, number } = data;
     console.log(contacts);
-    // const newContact: [{id: uuidv4(), name: name, number: number,}]
-    // this.setState((prevState) => ({
-    //   contacts: [...prevState.contacts, ...newContact],
-    // }));
+    const newContact = [{ id: uuidv4(), name: name, number: number }];
+    this.setState((prevState) => ({
+      contacts: [...prevState.contacts, ...newContact],
+    }));
     // this.setState( => {contacts: {id:uuidv4(), name: name, number: number}})
   };
 
