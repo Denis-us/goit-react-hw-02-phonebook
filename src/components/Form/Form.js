@@ -19,13 +19,13 @@ class Form extends Component {
     this.setState({
       [name]: value,
     });
-    // console.log(`event.target.value`, name, '----', value)
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
     console.log("this.state", this.state);
     this.props.onSubmit(this.state);
+
     this.reset();
   };
 
@@ -34,12 +34,14 @@ class Form extends Component {
   };
 
   render() {
+    const { name, number } = this.state;
+
     return (
       <form onSubmit={this.handleSubmit}>
         <label>Name</label>
         <Input
           type={"text"}
-          value={this.state.name}
+          value={name}
           placeholder={"enter your name"}
           name={"name"}
           handleChange={this.handleChange}
@@ -49,7 +51,7 @@ class Form extends Component {
         <label>Number</label>
         <Input
           type={"tel"}
-          value={this.state.number}
+          value={number}
           placeholder={"enter your number"}
           name={"number"}
           handleChange={this.handleChange}
