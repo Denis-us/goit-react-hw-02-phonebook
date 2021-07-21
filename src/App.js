@@ -21,6 +21,12 @@ class App extends Component {
     const { name, number } = data;
 
     const newContact = [{ id: uuidv4(), name: name, number: number }];
+
+    const addContact = this.state.contacts.some(
+      (contact) => contact.name === newContact.name
+    );
+    console.log("addContact", addContact);
+
     this.setState((prevState) => ({
       contacts: [...prevState.contacts, ...newContact],
     }));
