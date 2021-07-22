@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Input from "../Input/Input";
+import styles from "./Form.module.css";
 
 import shortid from "shortid";
 
@@ -37,8 +38,8 @@ class Form extends Component {
     const { name, number } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>Name</label>
+      <form onSubmit={this.handleSubmit} className={styles.form}>
+        <label className={styles.label}>Name</label>
         <Input
           type={"text"}
           value={name}
@@ -48,7 +49,7 @@ class Form extends Component {
           id={this.nameInputId}
         />
 
-        <label>Number</label>
+        <label className={styles.label}>Number</label>
         <Input
           type={"tel"}
           value={number}

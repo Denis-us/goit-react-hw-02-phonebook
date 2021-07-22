@@ -19,17 +19,14 @@ class App extends Component {
 
   formSubmitHandler = (data) => {
     const { name, number } = data;
+    const { contacts } = this.state;
+    const newContact = { id: uuidv4(), name, number };
 
-    const newContact = [{ id: uuidv4(), name: name, number: number }];
-
-    const addContact = this.state.contacts.some(
-      (contact) => contact.name === newContact.name
-    );
-    console.log("addContact", addContact);
-
-    this.setState((prevState) => ({
-      contacts: [...prevState.contacts, ...newContact],
-    }));
+    contacts.some((el) => el.name === name)
+      ? alert(`${name} is already in contacts`)
+      : this.setState(({ contacts }) => ({
+          contacts: [newContact, ...contacts],
+        }));
   };
 
   changeFilter = (event) => {
@@ -77,46 +74,3 @@ class App extends Component {
 }
 
 export default App;
-
-{
-  /* <TodoList
-          todos={visibleTodos}
-          onDeleteTodo={this.deleteTodo}
-          onToggleCompleted={this.toggleCompleted} */
-}
-
-// getVisibleTodos = () => {
-//   const { filter, todos } = this.state;
-//   const normalizedFilter = filter.toLowerCase();
-
-//   return todos.filter(todo =>
-//     todo.text.toLowerCase().includes(normalizedFilter),
-//   );
-// };
-
-// addTodo = text => {
-//   const todo = {
-//     id: shortid.generate(),
-//     text,
-//     completed: false,
-//   };
-
-//   this.setState(({ todos }) => ({
-//     todos: [todo, ...todos],
-//   }));
-// };
-
-// deleteTodo = todoId => {
-//   this.setState(prevState => ({
-//     todos: prevState.todos.filter(todo => todo.id !== todoId),
-//   }));
-// };
-
-// toggleCompleted = todoId => {
-
-//   this.setState(({ todos }) => ({
-//     todos: todos.map(todo =>
-//       todo.id === todoId ? { ...todo, completed: !todo.completed } : todo,
-//     ),
-//   }));
-// };
